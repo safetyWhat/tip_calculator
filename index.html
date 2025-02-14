@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>(header)</header>
+    <h1>Just Another Tip Calculator</h1>
+    <div id="container">
+        <div id="setTip"></div>
+        <div id="calculations">
+            <div id="subtotalContainer">
+                <span>$</span>
+                <input 
+                    type="number" 
+                    id="subtotal" 
+                    name="subtotal" 
+                    placeholder="0.00"
+                    step="0.01"
+                    min="0"
+                    inputmode="decimal"
+                    pattern="^\d*(\.\d{0,2})?$"
+                >
+                <label for="subtotal">Subtotal</label>
+            </div>
+            <div id="tipContainer"></div>
+                <span>$</span>
+                <span id="tipValue">0</span>
+                <span id="tipLabel" class="labels">Tip</span>
+            <div id="totalContainer">
+                <span>$</span>
+                <span id="totalValue">0</span>
+                <label for="total">Total</label>
+            </div>
+            <div id="toggles"></div>
+        </div>
+    </div>
+</body>
+</html>
