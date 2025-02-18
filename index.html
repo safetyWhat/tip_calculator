@@ -4,40 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tip Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=attach_money" />    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>(header)</header>
-    <h1>Just Another Tip Calculator</h1>
     <div id="container">
-        <div id="setTip"></div>
-        <div id="calculations">
-            <div id="subtotalContainer">
-                <span>$</span>
-                <input 
-                    type="number" 
-                    id="subtotal" 
-                    name="subtotal" 
-                    placeholder="0.00"
-                    step="0.01"
-                    min="0"
-                    inputmode="decimal"
-                    pattern="^\d*(\.\d{0,2})?$"
-                >
-                <label for="subtotal">Subtotal</label>
+        <div id="innerContainer">
+            <h1>Just Another Tip Calculator</h1>
+            <div id="setTip">
+                <div id="setTipText">Rate Your Server</div>
+                <div id="setTipFunction"></div>
             </div>
-            <div id="tipContainer"></div>
-                <span>$</span>
-                <span id="tipValue">0</span>
-                <span id="tipLabel" class="labels">Tip</span>
-            <div id="totalContainer">
-                <span>$</span>
-                <span id="totalValue">0</span>
-                <label for="total">Total</label>
+            <div id="calculations">
+                <div id="subtotalContainer" class="calculationRow">
+                    <span class="material-symbols-outlined">attach_money</span>
+                    <input 
+                        type="number" 
+                        id="subtotal" 
+                        name="subtotal" 
+                        placeholder="0.00"
+                        step="0.10"
+                        min="0"
+                        inputmode="decimal"
+                        pattern="^\d*(\.\d{0,2})?$"
+                        class="sigmar-regular"
+                    />
+                    <label for="subtotal">Subtotal</label>
+                </div>
+                <div id="tipContainer"class="calculationRow">
+                <span class="material-symbols-outlined">attach_money</span>
+                    <span id="tipValue" class="sigmar-regular numbers">0</span>
+                    <span id="tipLabel" class="labels">Tip</span>
+                </div>
+                <div id="totalContainer" class="calculationRow">
+                    <span class="material-symbols-outlined">attach_money</span>
+                    <span id="totalValue" class="sigmar-regular numbers">0</span>
+                    <label for="total">Total</label>
+                </div>
+                <div id="toggles"></div>
             </div>
-            <div id="toggles"></div>
-        </div>
+        </div>    
     </div>
 </body>
 </html>
