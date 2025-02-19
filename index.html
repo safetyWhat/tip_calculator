@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tip Calculator</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=attach_money,star" />    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info,star,toggle_off,toggle_on" />    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
@@ -16,13 +16,38 @@
         <div id="innerContainer">
             <h1 class="">Just Another Tip Calculator</h1>
             <div id="setTip">
-                <div id="setTipText" class="manrope setTipUpper">Rate Your Server</div>
+                <div id="setTipText" class="manrope setTipUpper">Rate Your Server:</div>
                 <div id="setTipFunction" class="setTipLower">
-                    <span id="star1" class="star material-symbols-outlined solid">star</span>
-                    <span id="star2" class="star material-symbols-outlined">star</span>
-                    <span id="star3" class="star material-symbols-outlined">star</span>
-                    <span id="star4" class="star material-symbols-outlined">star</span>
-                    <span id="star5" class="star material-symbols-outlined">star</span>
+                    <span 
+                        id="star1" 
+                        class="star material-symbols-outlined solid"
+                        title="10% tip">
+                        star
+                    </span>
+                    <span 
+                        id="star2" 
+                        class="star material-symbols-outlined"
+                        title="15% tip">
+                        star
+                    </span>
+                    <span
+                        id="star3" 
+                        class="star material-symbols-outlined"
+                        title="18% tip">
+                        star
+                    </span>
+                    <span
+                        id="star4"
+                        class="star material-symbols-outlined"
+                        title="20% tip">
+                        star
+                    </span>
+                    <span
+                        id="star5"
+                        class="star material-symbols-outlined"
+                        title="25% tip">
+                        star
+                    </span>
                 </div>
             </div>
             <div id="calculations">
@@ -42,7 +67,14 @@
                 <span id="tipLabel" class="manrope labels">Tip</span>
                 <span id="totalValue" class="manrope numbers">0</span>
                 <span id="totalLabel" class="manrope labels">Total</span>
-                <div id="toggles"></div>
+                <div id="toggles">
+                    <span class="toggle material-symbols-outlined"
+                    title="Round to the nearest $1">toggle_off</span>
+                    <span class="manrope labels">$1</span>
+                    <span class="toggle material-symbols-outlined"
+                    title="round to the nearest $.50">toggle_off</span>
+                    <span class="manrope labels">$.50</span>
+                </div>
             </div>
         </div>    
     </div>

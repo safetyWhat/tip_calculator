@@ -62,6 +62,11 @@ const findPercent = (rating) => {
     }
 };
 
+subtotal.addEventListener('input', () => {
+    tip.innerHTML = findTip(subtotal.value,findPercent(rating), 'none');
+    total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
+});
+
 const roundHalf = (total) => {
     return Number((Math.round(total * 2) / 2).toFixed(2));
 };

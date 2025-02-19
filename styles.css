@@ -74,6 +74,14 @@ h1 {
     'GRAD' 0,
     'opsz' 24
 }
+.material-symbols-outlined.info {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 200,
+    'GRAD' 0,
+    'opsz' 24;
+    font-size: 1rem;
+}
 #calculations {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -103,4 +111,17 @@ input {
     font-weight: 200;
     font-style: normal;
     font-size: 1.5rem;
+}
+#toggles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .25rem;
+}
+#toggles > .toggle {
+    font-size: 1.25rem;
+    place-self: center end;
+}
+#toggles > .labels {
+    font-size: 1rem;
+    place-self: center start;
 }
