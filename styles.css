@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Satisfy&display=swap');
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -8,13 +10,13 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 * {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     color: #EDF5FC;
 }
-#container {
+#container { /* Allows for the centering of the app on the screen */
     display: grid;
     place-items: center; 
     height: 100vh;
@@ -30,43 +32,79 @@ input[type="number"] {
     border: none;
     box-shadow: 0 0 15px #000;
     border-radius: 2.5rem;
-    width: 60%;
-    height: 60%;
+    width: 60vmin;
+    height: 60vmin;
+    aspect-ratio: 1;
     min-width: 500px;
     min-height: 500px;
     max-width: 800px;
     max-height: 800px;
     margin: auto;
+    gap: 1rem;
+}
+h1 {
+    font-size: 2.5rem;
+    font-family: "Satisfy", serif;
+    font-weight: 800;
+    margin: 1rem;
+    text-align: center;
+}
+
+#setTip {
+    text-align: center;
+}
+.setTipUpper {
+    margin-bottom: .5rem;
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+    }
+.material-symbols-outlined.solid {
+    font-variation-settings:
+    'FILL' 100,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
 }
-.calculationRow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 10px;
-  height: 3rem;
+.material-symbols-outlined:hover {
+    font-variation-settings:
+    'FILL' 100,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 24
 }
-input {
-    width: auto;
-    min-width: 50px;
-    max-width: 150px;
-    height: 3rem;
-}
-.sigmar-regular {
-    font-family: "Sigmar", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 3rem;
+#calculations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
 }
 .numbers {
-    height: 3rem;
-    line-height: 3rem;
-    vertical-align: middle;
-} 
+    place-self: center end;
+}
+.labels {
+    place-self: center start;
+}
+input {
+    background-color: #A39BA8;
+    border: none;/**/
+    color: #EDF5FC;
+    font-size: 1.5rem;
+    text-align: right;
+    width: 6ch;
+    &::placeholder {
+        color: rgba(237, 245, 252, 0.5); /* Makes placeholder slightly transparent */
+    }
+    
+}
+.manrope {
+    font-family: "Manrope", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.5rem;
+}
