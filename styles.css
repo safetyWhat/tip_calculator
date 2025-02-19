@@ -5,10 +5,6 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-/* For Firefox */
-input[type="number"] {
-    -moz-appearance: textfield;
-}
 * {
     /*border: 1px solid red;*/
     box-sizing: border-box;
@@ -71,10 +67,10 @@ h1 {
     'GRAD' 0,
     'opsz' 24
 }
-.material-symbols-outlined:hover {
+.material-symbols-outlined.hover {
     font-variation-settings:
     'FILL' 100,
-    'wght' 600,
+    'wght' 800,
     'GRAD' 0,
     'opsz' 24
 }

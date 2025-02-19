@@ -1,3 +1,33 @@
+const stars = document.querySelectorAll('.star');
+
+stars.forEach((star, index) => {
+    star.addEventListener('mouseenter', () => {
+        // Add hover class to current star and all previous stars
+        for (let i = 0; i <= index; i++) {
+            stars[i].classList.add('hover');
+        }
+    });
+
+    star.addEventListener('mouseleave', () => {
+        // Remove hover class from all stars
+        stars.forEach(s => s.classList.remove('hover'));
+    });
+});
+
+stars.forEach((star, index) => {
+    star.addEventListener('click', () => { 
+        // Add solid class to current star and all previous stars
+        for (let i = 0; i <= index; i++) {
+            stars[i].classList.add('solid');
+        }
+        // Remove solid class from all stars after current star
+        // This is if user changes their mind and clicks a lower star
+        for (let i = index + 1; i < stars.length; i++) { 
+            stars[i].classList.remove('solid');
+        }
+    });
+});
+
 const roundHalf = (total) => {
     return Number((Math.round(total * 2) / 2).toFixed(2));
 };
