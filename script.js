@@ -32,32 +32,32 @@ stars.forEach((star, index) => {
         }
         rating = index;
         //console.log(rating);
-        console.log('subtotal: ' + subtotal.value);
+        //console.log('subtotal: ' + subtotal.value);
         tip.innerHTML = findTip(subtotal.value,findPercent(rating), 'none');
-        console.log(findTip(subtotal.value,findPercent(rating), 'none'));
-        total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML)).toFixed(2));
+        //console.log(findTip(subtotal.value,findPercent(rating), 'none'));
+        total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
     });
 });
 
 const findPercent = (rating) => {
     switch(rating) {
         case 0:
-            console.log('Rating:', rating);
+            //console.log('Rating:', rating);
             return 10; // 1 star = 10%
         case 1:
-            console.log('Rating:', rating);
+            //console.log('Rating:', rating);
             return 15; // 2 stars = 15%
         case 2:
-            console.log('Rating:', rating);
+            //console.log('Rating:', rating);
             return 18; // 3 stars = 18%
         case 3:
-            console.log('Rating:', rating);
+            //console.log('Rating:', rating);
             return 20; // 4 stars = 20%
         case 4:
-            console.log('Rating:', rating);
+            //console.log('Rating:', rating);
             return 25; // 5 stars = 25%
         default:
-            console.log('Rating:', rating);
+            //console.log('Rating:', rating);
             return 0;  // Default case if no match
     }
 };
@@ -72,19 +72,20 @@ const roundWhole = (total) => {
 
 const findTip = (subTotal, tipPercent, round) => {
     subTotal = Number(subTotal);
-    console.log('Subtotal: ' + subTotal, 'Tip Percent: ' + tipPercent, 'Round: ' + round);
+    //console.log('Subtotal: ' + subTotal, 'Tip Percent: ' + tipPercent, 'Round: ' + round);
     const tipDecimal = tipPercent / 100;
-    console.log('Tip Decimal: ' + tipDecimal);
-    let tip = Number((subTotal * tipDecimal).toFixed(2));
-    console.log('Tip: ' + tip);
-    const total = Number((subTotal + tip).toFixed(2));
-    console.log(
+    //console.log('Tip Decimal: ' + tipDecimal);
+    let tip = Number((subTotal * tipDecimal)).toFixed(2);
+    //console.log('Tip: ' + tip);
+    const total = Number((subTotal + tip)).toFixed(2);
+    /*console.log(
         'Tip Decimal: ' + tipDecimal,
         'Tip: ' + tip,
         'Total: ' + total
-    )
-    if (round === 'whole') tip = Number((roundWhole(total) - subTotal).toFixed(2));
-    else if (round === 'half') tip = Number((roundHalf(total) - subTotal).toFixed(2));
+    )*/
+    //if (round === 'none') return tip;
+    if (round === 'whole') tip = Number((roundWhole(total) - subTotal)).toFixed(2);
+    else if (round === 'half') tip = Number((roundHalf(total) - subTotal)).toFixed(2);
     return tip;
 };
 
