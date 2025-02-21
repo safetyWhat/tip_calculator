@@ -6,15 +6,40 @@ const wholeToggle = document.getElementById('wholeToggle');
 const halfToggle = document.getElementById('halfToggle');
 const viewToggle = document.getElementById('viewToggle');
 const setTip = document.getElementById('setTip');
+
 // Default rating
 let rating = 0;
 // Default round
 let round = 'none';
+// Default percent
+let percent = 10;
 
 viewToggle.addEventListener('click', () => {
     if (viewToggle.innerHTML === 'toggle_off') {
         viewToggle.innerHTML = 'toggle_on';
-        setTip.innerHTML = '';
+        setTip.innerHTML = `
+            <div id="setTipText" class="manrope setTipUpper">Tip Percent:</div>
+                <div id="setTipFunction" class="setTipLower">
+                    <input 
+                        type="number"
+                        min="10"
+                        max="100"
+                        step="1"
+                        placeholder="15"
+                        class="manrope numbers"
+                        title="Enter a percentage between 10 and 100"
+                    />
+                <span id="percentSymbol" class="manrope labels">%</span>
+            </div>
+        `;
+        tip.innerHTML = '0.00';
+        total.innerHTML = '0.00';
+        const percentInput = setTip.querySelector('input');
+        percentInput.addEventListener('input', () => {
+            percent = percentInput.value;
+            tip.innerHTML = findTip(subtotal.value, percent, round);
+            total.innerHTML = (Number(subtotal.value) + Number(tip.innerHTML)).toFixed(2);
+        });
     } else {
         viewToggle.innerHTML = 'toggle_off';
         setTip.innerHTML = `
@@ -50,8 +75,12 @@ viewToggle.addEventListener('click', () => {
                     title="25% tip">
                     star
                 </span>
-            </div>`
-        ;
+            </div>
+        `;
+        tip.innerHTML = '0.00';
+        total.innerHTML = '0.00';
+        const newStars = document.querySelectorAll('.star');
+        attachStarListeners(newStars);
     }
 });
 
@@ -70,6 +99,7 @@ wholeToggle.addEventListener('click', () => {
     tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
     total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
 });
+
 halfToggle.addEventListener('click', () => {
     if (halfToggle.innerHTML === 'toggle_off') {
         round = 'half';
@@ -86,61 +116,69 @@ halfToggle.addEventListener('click', () => {
     total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
 });
 
-stars.forEach((star, index) => {
-    star.addEventListener('mouseenter', () => {
-        // Add hover class to current star and all previous stars
-        for (let i = 0; i <= index; i++) {
-            stars[i].classList.add('hover');
-        }
-    });
+const attachStarListeners = (stars) => {
+    stars.forEach((star, index) => {
+        star.addEventListener('mouseenter', () => {
+            // Add hover class to current star and all previous stars
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add('hover');
+            }
+        });
 
-    star.addEventListener('mouseleave', () => {
-        // Remove hover class from all stars
-        stars.forEach(s => s.classList.remove('hover'));
-    });
-});
+        star.addEventListener('mouseleave', () => {
+            // Remove hover class from all stars
+            stars.forEach(s => s.classList.remove('hover'));
+        });
 
-stars.forEach((star, index) => {
-    star.addEventListener('click', () => { 
-        // Add solid class to current star and all previous stars
-        for (let i = 0; i <= index; i++) {
-            stars[i].classList.add('solid');
-        }
-        // Remove solid class from all stars after current star
-        // This is if user changes their mind and clicks a lower star
-        for (let i = index + 1; i < stars.length; i++) { 
-            stars[i].classList.remove('solid');
-        }
-        rating = index;
-        //console.log(rating);
-        //console.log('subtotal: ' + subtotal.value);
-        tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
-        //console.log(findTip(subtotal.value,findPercent(rating), 'none'));
-        total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
+        star.addEventListener('click', () => { 
+            // Add solid class to current star and all previous stars
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add('solid');
+            }
+            // Remove solid class from all stars after current star
+            // This is if user changes their mind and clicks a lower star
+            for (let i = index + 1; i < stars.length; i++) { 
+                stars[i].classList.remove('solid');
+            }
+            rating = index;
+            //console.log(rating);
+            //console.log('subtotal: ' + subtotal.value);
+            tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
+            //console.log(findTip(subtotal.value,findPercent(rating), 'none'));
+            total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
+        });
     });
-});
+};
+
+attachStarListeners(stars);
 
 const findPercent = (rating) => {
     switch(rating) {
         case 0:
             //console.log('Rating:', rating);
-            return 10; // 1 star = 10%
+            percent = 10; // 1 star = 10%
+            break;
         case 1:
             //console.log('Rating:', rating);
-            return 15; // 2 stars = 15%
+            percent = 15; // 2 stars = 15%
+            break;
         case 2:
             //console.log('Rating:', rating);
-            return 18; // 3 stars = 18%
+            percent = 18; // 3 stars = 18%
+            break;
         case 3:
             //console.log('Rating:', rating);
-            return 20; // 4 stars = 20%
+            percent = 20; // 4 stars = 20%
+            break;
         case 4:
             //console.log('Rating:', rating);
-            return 25; // 5 stars = 25%
+            percent = 25; // 5 stars = 25%
+            break;
         default:
             //console.log('Rating:', rating);
-            return 0;  // Default case if no match
+            percent = 0;  // Default case if no match
     }
+    return percent;
 };
 
 subtotal.addEventListener('input', () => {

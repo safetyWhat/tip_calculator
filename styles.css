@@ -132,7 +132,7 @@ input {
     font-style: normal;
     font-size: 1.5rem;
 }
-#totalValue {
+#totalValue, #percentSymbol {
     color: #A30015;
 }
 #toggles {
