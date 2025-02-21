@@ -4,10 +4,56 @@ const tip = document.getElementById('tipValue');
 const total = document.getElementById('totalValue');
 const wholeToggle = document.getElementById('wholeToggle');
 const halfToggle = document.getElementById('halfToggle');
+const viewToggle = document.getElementById('viewToggle');
+const setTip = document.getElementById('setTip');
 // Default rating
 let rating = 0;
 // Default round
 let round = 'none';
+
+viewToggle.addEventListener('click', () => {
+    if (viewToggle.innerHTML === 'toggle_off') {
+        viewToggle.innerHTML = 'toggle_on';
+        setTip.innerHTML = '';
+    } else {
+        viewToggle.innerHTML = 'toggle_off';
+        setTip.innerHTML = `
+            <div id="setTipText" class="manrope setTipUpper">Rate Your Server:</div>
+            <div id="setTipFunction" class="setTipLower">
+                <span 
+                    id="star1" 
+                    class="star material-symbols-outlined solid"
+                    title="10% tip">
+                    star
+                </span>
+                <span 
+                    id="star2" 
+                    class="star material-symbols-outlined"
+                    title="15% tip">
+                    star
+                </span>
+                <span
+                    id="star3" 
+                    class="star material-symbols-outlined"
+                    title="18% tip">
+                    star
+                </span>
+                <span
+                    id="star4"
+                    class="star material-symbols-outlined"
+                    title="20% tip">
+                    star
+                </span>
+                <span
+                    id="star5"
+                    class="star material-symbols-outlined"
+                    title="25% tip">
+                    star
+                </span>
+            </div>`
+        ;
+    }
+});
 
 wholeToggle.addEventListener('click', () => {
     if (wholeToggle.innerHTML === 'toggle_off') {
