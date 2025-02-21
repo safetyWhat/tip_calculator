@@ -2,8 +2,43 @@ const stars = document.querySelectorAll('.star');
 const subtotal = document.getElementById('subtotal');
 const tip = document.getElementById('tipValue');
 const total = document.getElementById('totalValue');
+const wholeToggle = document.getElementById('wholeToggle');
+const halfToggle = document.getElementById('halfToggle');
 // Default rating
 let rating = 0;
+// Default round
+let round = 'none';
+
+wholeToggle.addEventListener('click', () => {
+    if (wholeToggle.innerHTML === 'toggle_off') {
+        round = 'whole';
+        wholeToggle.innerHTML = 'toggle_on';
+        halfToggle.innerHTML = 'toggle_off';
+        wholeToggle.classList.add('active');
+        halfToggle.classList.remove('active');
+    } else {
+        round = 'none';
+        wholeToggle.innerHTML = 'toggle_off';
+        wholeToggle.classList.remove('active');
+    }
+    tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
+    total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
+});
+halfToggle.addEventListener('click', () => {
+    if (halfToggle.innerHTML === 'toggle_off') {
+        round = 'half';
+        halfToggle.innerHTML = 'toggle_on';
+        wholeToggle.innerHTML = 'toggle_off';
+        halfToggle.classList.add('active');
+        wholeToggle.classList.remove('active');
+    } else {
+        round = 'none';
+        halfToggle.innerHTML = 'toggle_off';
+        halfToggle.classList.remove('active');
+    }
+    tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
+    total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
+});
 
 stars.forEach((star, index) => {
     star.addEventListener('mouseenter', () => {
@@ -33,7 +68,7 @@ stars.forEach((star, index) => {
         rating = index;
         //console.log(rating);
         //console.log('subtotal: ' + subtotal.value);
-        tip.innerHTML = findTip(subtotal.value,findPercent(rating), 'none');
+        tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
         //console.log(findTip(subtotal.value,findPercent(rating), 'none'));
         total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
     });
@@ -63,7 +98,7 @@ const findPercent = (rating) => {
 };
 
 subtotal.addEventListener('input', () => {
-    tip.innerHTML = findTip(subtotal.value,findPercent(rating), 'none');
+    tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
     total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
 });
 
@@ -80,18 +115,18 @@ const findTip = (subTotal, tipPercent, round) => {
     //console.log('Subtotal: ' + subTotal, 'Tip Percent: ' + tipPercent, 'Round: ' + round);
     const tipDecimal = tipPercent / 100;
     //console.log('Tip Decimal: ' + tipDecimal);
-    let tip = Number((subTotal * tipDecimal)).toFixed(2);
+    let tip = Number((subTotal * tipDecimal));
     //console.log('Tip: ' + tip);
-    const total = Number((subTotal + tip)).toFixed(2);
+    let total = Number((subTotal + tip));
     /*console.log(
         'Tip Decimal: ' + tipDecimal,
         'Tip: ' + tip,
         'Total: ' + total
     )*/
     //if (round === 'none') return tip;
-    if (round === 'whole') tip = Number((roundWhole(total) - subTotal)).toFixed(2);
-    else if (round === 'half') tip = Number((roundHalf(total) - subTotal)).toFixed(2);
-    return tip;
+    if (round === 'whole') tip = Number((roundWhole(total) - subTotal));
+    else if (round === 'half') tip = Number((roundHalf(total) - subTotal));
+    return tip.toFixed(2);
 };
 
 //console.log(findTip(23.65, 20, 'half'));

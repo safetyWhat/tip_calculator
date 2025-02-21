@@ -26,7 +26,7 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: center;
     background-color: #A39BA8;
     border: none;
-    box-shadow: 0 0 15px #000;
+    box-shadow: 5px 5px 15px 5px #000;
     border-radius: 2.5rem;
     width: 60vmin;
     height: 60vmin;
@@ -37,6 +37,7 @@ input[type="number"]::-webkit-outer-spin-button {
     max-height: 800px;
     margin: auto;
     gap: 1rem;
+    position: relative;
 }
 h1 {
     font-size: 2.5rem;
@@ -82,6 +83,9 @@ h1 {
     'opsz' 24;
     font-size: 1rem;
 }
+.star {
+    color: #FA9500;
+}
 #calculations {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -112,10 +116,16 @@ input {
     font-style: normal;
     font-size: 1.5rem;
 }
+#totalValue {
+    color: #A30015;
+}
 #toggles {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: .25rem;
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
 }
 #toggles > .toggle {
     font-size: 1.25rem;
