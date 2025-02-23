@@ -3,7 +3,6 @@ const subtotal = document.getElementById('subtotal');
 const tip = document.getElementById('tipValue');
 const total = document.getElementById('totalValue');
 const wholeToggle = document.getElementById('wholeToggle');
-const halfToggle = document.getElementById('halfToggle');
 const viewToggle = document.getElementById('viewToggle');
 const setTip = document.getElementById('setTip');
 
@@ -40,6 +39,9 @@ viewToggle.addEventListener('click', () => {
             tip.innerHTML = findTip(subtotal.value, percent, round);
             total.innerHTML = (Number(subtotal.value) + Number(tip.innerHTML)).toFixed(2);
         });
+        percent = 15;
+        tip.innerHTML = findTip(subtotal.value, percent, round);
+        total.innerHTML = (Number(subtotal.value) + Number(tip.innerHTML)).toFixed(2);
     } else {
         viewToggle.innerHTML = 'toggle_off';
         setTip.innerHTML = `
@@ -81,6 +83,10 @@ viewToggle.addEventListener('click', () => {
         total.innerHTML = '0.00';
         const newStars = document.querySelectorAll('.star');
         attachStarListeners(newStars);
+        rating = 0;
+        percent = 10;
+        tip.innerHTML = findTip(subtotal.value, percent, round);
+        total.innerHTML = (Number(subtotal.value) + Number(tip.innerHTML)).toFixed(2);
     }
 });
 
@@ -88,29 +94,11 @@ wholeToggle.addEventListener('click', () => {
     if (wholeToggle.innerHTML === 'toggle_off') {
         round = 'whole';
         wholeToggle.innerHTML = 'toggle_on';
-        halfToggle.innerHTML = 'toggle_off';
         wholeToggle.classList.add('active');
-        halfToggle.classList.remove('active');
     } else {
         round = 'none';
         wholeToggle.innerHTML = 'toggle_off';
         wholeToggle.classList.remove('active');
-    }
-    tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
-    total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
-});
-
-halfToggle.addEventListener('click', () => {
-    if (halfToggle.innerHTML === 'toggle_off') {
-        round = 'half';
-        halfToggle.innerHTML = 'toggle_on';
-        wholeToggle.innerHTML = 'toggle_off';
-        halfToggle.classList.add('active');
-        wholeToggle.classList.remove('active');
-    } else {
-        round = 'none';
-        halfToggle.innerHTML = 'toggle_off';
-        halfToggle.classList.remove('active');
     }
     tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
     total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
@@ -181,14 +169,30 @@ const findPercent = (rating) => {
     return percent;
 };
 
+subtotal.addEventListener('input', (e) => {
+    // Remove any non-digit characters
+    let value = e.target.value.replace(/\D/g, '');
+    
+    // Insert decimal point
+    const length = value.length;
+    const dollars = value.substring(0, length - 2);
+    const cents = value.substring(length - 2);
+    
+    // Format and set the value
+    e.target.value = `${dollars}.${cents}`;
+});
+
 subtotal.addEventListener('input', () => {
     tip.innerHTML = findTip(subtotal.value,findPercent(rating), round);
     total.innerHTML = Number((Number(subtotal.value) + Number(tip.innerHTML))).toFixed(2);
 });
 
-const roundHalf = (total) => {
-    return Number((Math.round(total * 2) / 2).toFixed(2));
-};
+// Prevent non-numeric input
+subtotal.addEventListener('keypress', (e) => {
+    if (!/\d/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete') {
+        e.preventDefault();
+    }
+});
 
 const roundWhole = (total) => {
     return Number(Math.round(total).toFixed(2));
@@ -209,7 +213,6 @@ const findTip = (subTotal, tipPercent, round) => {
     )*/
     //if (round === 'none') return tip;
     if (round === 'whole') tip = Number((roundWhole(total) - subTotal));
-    else if (round === 'half') tip = Number((roundHalf(total) - subTotal));
     return tip.toFixed(2);
 };
 

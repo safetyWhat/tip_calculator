@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Satisfy&display=swap');
 
+:root {
+    --main-bg-color: #272D2D;
+    --basic-bg-color: #A39BA8;
+    --basic-text-color: #EDF5FC;
+    --basic-highlight-color: #A30015;
+    --star-color: #FA9500;
+    --shadow-color: #000;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -10,13 +19,13 @@ input[type="number"]::-webkit-outer-spin-button {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: #EDF5FC;
+    color: var(--basic-text-color);
 }
 #container { /* Allows for the centering of the app on the screen */
     display: grid;
     place-items: center; 
     height: 100vh;
-    background-color: #272D2D;
+    background-color: var(--main-bg-color);
 }
 
 #innerContainer {
@@ -24,9 +33,9 @@ input[type="number"]::-webkit-outer-spin-button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #A39BA8;
+    background-color: var(--basic-bg-color);
     border: none;
-    box-shadow: 5px 5px 15px 5px #000;
+    box-shadow: 5px 5px 15px 5px var(--shadow-color);
     border-radius: 2.5rem;
     width: 60vmin;
     height: 60vmin;
@@ -100,7 +109,7 @@ h1 {
     font-size: 1.5rem;
 }
 .star {
-    color: #FA9500;
+    color: var(--star-color);
 }
 #calculations {
     display: grid;
@@ -114,9 +123,9 @@ h1 {
     place-self: center start;
 }
 input {
-    background-color: #A39BA8;
+    background-color: var(--basic-bg-color);
     border: none;/**/
-    color: #EDF5FC;
+    color: var(--basic-text-color);
     font-size: 1.5rem;
     text-align: right;
     width: 6ch;
@@ -133,7 +142,7 @@ input {
     font-size: 1.5rem;
 }
 #totalValue, #percentSymbol {
-    color: #A30015;
+    color: var(--basic-highlight-color);
 }
 #toggles {
     display: grid;
