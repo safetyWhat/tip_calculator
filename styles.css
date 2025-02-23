@@ -5,6 +5,8 @@
     --basic-bg-color: #A39BA8;
     --basic-text-color: #EDF5FC;
     --basic-highlight-color: #A30015;
+    --adv-bg-color: #08A4BD;
+    --adv-text-color: #F18F01;
     --star-color: #FA9500;
     --shadow-color: #000;
 }
@@ -21,6 +23,7 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 0;
     color: var(--basic-text-color);
 }
+
 #container { /* Allows for the centering of the app on the screen */
     display: grid;
     place-items: center; 
@@ -48,12 +51,17 @@ input[type="number"]::-webkit-outer-spin-button {
     gap: 1rem;
     position: relative;
 }
+#innerContainer.advanced {
+    background-color: var(--adv-bg-color);
+    color: var(--adv-text-color);
+}
 h1 {
     font-size: 2.5rem;
     font-family: "Satisfy", serif;
     font-weight: 800;
     margin: 1rem;
     text-align: center;
+    color: var(--basic-highlight-color);
 }
 #view {
     position: absolute;
@@ -123,17 +131,18 @@ h1 {
     place-self: center start;
 }
 input {
-    background-color: var(--basic-bg-color);
+    background-color: transparent;
     border: none;/**/
     color: var(--basic-text-color);
     font-size: 1.5rem;
     text-align: right;
-    width: 6ch;
+    min-width: 6ch;
+    max-width: 10ch;
     &::placeholder {
         color: rgba(237, 245, 252, 0.5); /* Makes placeholder slightly transparent */
     }
-    
 }
+
 .manrope {
     font-family: "Manrope", serif;
     font-optical-sizing: auto;
@@ -162,4 +171,46 @@ input {
 }
 .toggle {
     cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+    #innerContainer {
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        min-height: unset;
+        max-width: unset;
+        max-height: unset;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        gap: 1rem;
+    }
+    /*h1 {
+        font-size: 1.5rem;
+    }*/
+
+    .manrope {
+        font-size: 2rem;
+    }
+    .star {
+        font-size: 2.5rem;
+    }
+    .material-symbols-outlined#viewToggle {
+        font-size: 2rem;
+    }
+    #view {
+        font-size: 1rem;
+    }
+    #toggles > .toggle {
+        font-size: 1.5rem;
+    }
+    #toggles > .labels {
+        font-size: 1.25rem;
+    }
+
+    input {
+        min-width: 4ch;
+        max-width: 8ch;
+    }
 }

@@ -15,6 +15,7 @@ let percent = 10;
 
 viewToggle.addEventListener('click', () => {
     if (viewToggle.innerHTML === 'toggle_off') {
+        // Change to advanced view
         viewToggle.innerHTML = 'toggle_on';
         setTip.innerHTML = `
             <div id="setTipText" class="manrope setTipUpper">Tip Percent:</div>
@@ -31,6 +32,7 @@ viewToggle.addEventListener('click', () => {
                 <span id="percentSymbol" class="manrope labels">%</span>
             </div>
         `;
+        document.getElementById('innerContainer').classList.add('advanced');
         tip.innerHTML = '0.00';
         total.innerHTML = '0.00';
         const percentInput = setTip.querySelector('input');
@@ -43,6 +45,7 @@ viewToggle.addEventListener('click', () => {
         tip.innerHTML = findTip(subtotal.value, percent, round);
         total.innerHTML = (Number(subtotal.value) + Number(tip.innerHTML)).toFixed(2);
     } else {
+        // Change to basic view
         viewToggle.innerHTML = 'toggle_off';
         setTip.innerHTML = `
             <div id="setTipText" class="manrope setTipUpper">Rate Your Server:</div>
@@ -79,6 +82,7 @@ viewToggle.addEventListener('click', () => {
                 </span>
             </div>
         `;
+        document.getElementById('innerContainer').classList.remove('advanced');
         tip.innerHTML = '0.00';
         total.innerHTML = '0.00';
         const newStars = document.querySelectorAll('.star');
